@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate+PaintedEggshell.h"
 
 @interface PaintedEggshellManager : NSObject
+
+@property (nonatomic, strong) NSMutableArray *networkLogArray;
 
 + (PaintedEggshellManager *)shareInstance;
 

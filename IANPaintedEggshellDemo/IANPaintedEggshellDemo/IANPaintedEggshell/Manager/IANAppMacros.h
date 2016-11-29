@@ -16,7 +16,7 @@
 #define PAINTED_EGGSHELL_LOCALNOTI                     @"painted_eggshell_localnoti"
 
 // 彩蛋日志搜集时间间隔
-#define PAINTED_EGGSHELL_LOG_TIME                      10.0f
+#define PAINTED_EGGSHELL_LOG_TIME                      10
 
 // 是否集成彩蛋功能 （1为集成，0为不集成）APPStore版本禁止集成，设置为0
 #define PAINTED_EGGSHELL_CODE_IS_OPEN                  1

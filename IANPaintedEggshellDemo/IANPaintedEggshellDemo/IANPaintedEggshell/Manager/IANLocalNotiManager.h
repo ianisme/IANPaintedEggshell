@@ -13,7 +13,7 @@
 
 + (IANLocalNotiManager *)shareInstance;
 
-- (void)setLocalNotiManager:(NSDictionary *)localNoti andTaskId:(NSString *)taskId andLocalTime:(NSDate *)time;
+- (void)setLocalNotiManager:(NSDictionary *)localNoti andTaskId:(NSString *)taskId andLocalTime:(NSTimeInterval)time;
 
 - (void)cancelLocalNotiManager:(NSString *)taskId;
 

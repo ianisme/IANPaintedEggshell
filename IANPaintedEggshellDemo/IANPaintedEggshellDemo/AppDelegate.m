@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "IANListViewController.h"
+#import "IANCustomDataProtocol.h"
+#import "PaintedEggshellManager.h"
+#import "IANAppMacros.h"
+#import "AppDelegate+PaintedEggshell.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +21,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    [NSURLProtocol registerClass:[IANCustomDataProtocol class]];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    IANListViewController *rvc = [[IANListViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
+    self.window.rootViewController = nav;
+    
     return YES;
 }
 
@@ -47,5 +63,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// 接收本地推送
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+
+
+
+}
 
 @end

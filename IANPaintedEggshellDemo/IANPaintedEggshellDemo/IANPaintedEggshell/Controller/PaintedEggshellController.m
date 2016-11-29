@@ -12,6 +12,7 @@
 #import "PaintEggshellLogController.h"
 #import "IANLocalNotiManager.h"
 #import "IANAppMacros.h"
+#import "PaintedEggshellManager.h"
 
 static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
 
@@ -268,12 +269,10 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
     if (_isOpenLog) {
         NSLog(@"日志收集功能打开");
         // 设置保存日志文件的时间为10秒一次
-        NSDate *currentDate = [NSDate date];
-        NSDate *date = [currentDate dateByAddingTimeInterval:PAINTED_EGGSHELL_LOG_TIME];
-        [[IANLocalNotiManager shareInstance] setLocalNotiManager:@{} andTaskId:PAINTED_EGGSHELL_LOCALNOTI andLocalTime:date];
-//        if ([WebServiceConfigMG sharedInstance].networkLogArray == nil) {
-//            [WebServiceConfigMG sharedInstance].networkLogArray = [@[] mutableCopy];
-//        }
+        [[IANLocalNotiManager shareInstance] setLocalNotiManager:@{} andTaskId:PAINTED_EGGSHELL_LOCALNOTI andLocalTime:PAINTED_EGGSHELL_LOG_TIME];
+        if ([PaintedEggshellManager shareInstance].networkLogArray == nil) {
+            [PaintedEggshellManager shareInstance].networkLogArray = [@[] mutableCopy];
+        }
     } else {
         NSLog(@"日志收集功能关闭");
         [[IANLocalNotiManager shareInstance] cancelLocalNotiManager:PAINTED_EGGSHELL_LOCALNOTI];
