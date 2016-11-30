@@ -27,6 +27,7 @@
 		3C2DB0751DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB0721DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m */; };
 		3C2DB0761DEC2CDF0071253A /* PaintEggshellLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB0741DEC2CDF0071253A /* PaintEggshellLogController.m */; };
 		3C2DB0791DEC2D1B0071253A /* IANLocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB0781DEC2D1B0071253A /* IANLocalNotiManager.m */; };
+		3CFF98921DEEC85800AA80A3 /* IANAFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFF98911DEEC85800AA80A3 /* IANAFHTTPSessionManager.m */; };
 		6C88686CC6B32DCF89766A20 /* libPods-IANPaintedEggshellDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0759CC03536B0105389E1AB /* libPods-IANPaintedEggshellDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		3C2DB0741DEC2CDF0071253A /* PaintEggshellLogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellLogController.m; sourceTree = "<group>"; };
 		3C2DB0771DEC2D1B0071253A /* IANLocalNotiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANLocalNotiManager.h; sourceTree = "<group>"; };
 		3C2DB0781DEC2D1B0071253A /* IANLocalNotiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANLocalNotiManager.m; sourceTree = "<group>"; };
+		3CFF98901DEEC85800AA80A3 /* IANAFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANAFHTTPSessionManager.h; sourceTree = "<group>"; };
+		3CFF98911DEEC85800AA80A3 /* IANAFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANAFHTTPSessionManager.m; sourceTree = "<group>"; };
 		44D714558629DF34F800F44C /* Pods-IANPaintedEggshellDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IANPaintedEggshellDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-IANPaintedEggshellDemo/Pods-IANPaintedEggshellDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7D361B66DA5BD6949A5314BF /* Pods-IANPaintedEggshellDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IANPaintedEggshellDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IANPaintedEggshellDemo/Pods-IANPaintedEggshellDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C0759CC03536B0105389E1AB /* libPods-IANPaintedEggshellDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IANPaintedEggshellDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +124,8 @@
 			children = (
 				3C0A9F4D1DED6A950045B5F7 /* IANPageDataSource.h */,
 				3C0A9F4E1DED6A950045B5F7 /* IANPageDataSource.m */,
+				3CFF98901DEEC85800AA80A3 /* IANAFHTTPSessionManager.h */,
+				3CFF98911DEEC85800AA80A3 /* IANAFHTTPSessionManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				3C0A9F531DED6A950045B5F7 /* IANPageDataSource.m in Sources */,
 				3C0A9F381DEC6AD20045B5F7 /* IANNetworkLogModel.m in Sources */,
 				3C2DB0701DEC2C0F0071253A /* PaintedEggshellController.m in Sources */,
+				3CFF98921DEEC85800AA80A3 /* IANAFHTTPSessionManager.m in Sources */,
 				3C2DB0531DEC24D50071253A /* AppDelegate.m in Sources */,
 				3C2DB0501DEC24D50071253A /* main.m in Sources */,
 				3C0A9F601DED6E0D0045B5F7 /* IANCustomDataProtocol.m in Sources */,
@@ -527,7 +533,7 @@
 				INFOPLIST_FILE = IANPaintedEggshellDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ianisme.IANPaintedEggshellDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ianisme.IANPaintedEggshellDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "244042b1-a5ac-4e2d-b676-c75918350e69";
 				PROVISIONING_PROFILE_SPECIFIER = ianDev;
@@ -543,7 +549,7 @@
 				INFOPLIST_FILE = IANPaintedEggshellDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ianisme.IANPaintedEggshellDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ianisme.IANPaintedEggshellDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "244042b1-a5ac-4e2d-b676-c75918350e69";
 				PROVISIONING_PROFILE_SPECIFIER = ianDev;

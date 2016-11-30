@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppDelegate+PaintedEggshell.h"
+#import "IANAppMacros.h"
 
 @interface PaintedEggshellManager : NSObject
 

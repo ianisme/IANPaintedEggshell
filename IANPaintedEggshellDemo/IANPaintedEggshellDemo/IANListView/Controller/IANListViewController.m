@@ -11,6 +11,8 @@
 #import "AFNetworking.h"
 #import "IANCustomCell.h"
 #import "CustomModel.h"
+#import "IANAFHTTPSessionManager.h"
+
 #import "UIView+ManyTapAction.h"
 #import "IANAppMacros.h"
 #import "PaintedEggshellController.h"
@@ -41,22 +43,29 @@
     ds.requestBlock = ^(NSDictionary *params, void(^dataArrayDone)(BOOL, id)){
         
         NSString *str=[NSString stringWithFormat:@"https://m2.qiushibaike.com/article/list/day?count=%ld&page=%ld",[params[@"page_size"] integerValue],[params[@"page"] integerValue]];
-        NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSString *html = operation.responseString;
-            NSData* data=[html dataUsingEncoding:NSUTF8StringEncoding];
-            id dict=[NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
+//        NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        IANAFHTTPSessionManager *manager = [IANAFHTTPSessionManager manager];
+
+        [manager GET:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
             
-            NSMutableArray *tempArray = [NSMutableArray arrayWithArray:dict[@"items"]];
-            
-            dataArrayDone(YES,tempArray);
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            dataArrayDone(NO,error);
-        }];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [queue addOperation:operation];
+        }
+             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                 
+                 NSLog(@"这里打印请求成功要做的事");
+     
+                 NSMutableArray *tempArray = [NSMutableArray arrayWithArray:responseObject[@"items"]];
+                 
+                 dataArrayDone(YES,tempArray);
+                 
+             }
+         
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {  
+                 
+                 dataArrayDone(NO,error);
+                 NSLog(@"%@",error);  //这里打印错误信息
+                 
+             }];
         
     };
     ds.creatCellBlock = ^(UITableView *tableView, NSIndexPath *indexPath, NSMutableArray *dataArray){

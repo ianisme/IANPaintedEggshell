@@ -10,8 +10,6 @@
 #import "IANListViewController.h"
 #import "IANCustomDataProtocol.h"
 #import "PaintedEggshellManager.h"
-#import "IANAppMacros.h"
-#import "AppDelegate+PaintedEggshell.h"
 
 @interface AppDelegate ()
 
@@ -63,11 +61,9 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-// 接收本地推送
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-
-
-
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    
 }
 
 @end
