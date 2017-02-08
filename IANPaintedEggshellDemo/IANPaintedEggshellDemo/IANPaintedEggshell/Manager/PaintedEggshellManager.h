@@ -16,6 +16,9 @@
 
 + (PaintedEggshellManager *)shareInstance;
 
+- (void)configInitData;
+
 - (void)addPaintedEggshellLocalNotification;
+
 
 @end

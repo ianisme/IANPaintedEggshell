@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "IANListViewController.h"
-#import "IANCustomDataProtocol.h"
 #import "PaintedEggshellManager.h"
 
 @interface AppDelegate ()
@@ -20,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [NSURLProtocol registerClass:[IANCustomDataProtocol class]];
+    [[PaintedEggshellManager shareInstance] configInitData];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -30,6 +29,8 @@
     IANListViewController *rvc = [[IANListViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
     self.window.rootViewController = nav;
+    
+
     
     return YES;
 }

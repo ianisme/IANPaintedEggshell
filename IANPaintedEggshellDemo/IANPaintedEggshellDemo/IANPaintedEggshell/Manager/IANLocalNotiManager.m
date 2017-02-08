@@ -47,10 +47,10 @@
 
         //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
         UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-        content.title = @"Introduction to Notifications";
-        content.subtitle = @"Session 707";
-        content.body = @"Woah! These new notifications look amazing! Don’t you agree?";
-        content.badge = @1;
+        content.title = @"";
+        content.subtitle = @"";
+        content.body = @"";
+//        content.badge = @1;
         content.userInfo = infoDic;
         
         // 在 alertTime 后推送本地推送

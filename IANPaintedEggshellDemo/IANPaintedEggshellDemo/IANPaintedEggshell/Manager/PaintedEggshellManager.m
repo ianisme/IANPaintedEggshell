@@ -9,8 +9,14 @@
 #import "PaintedEggshellManager.h"
 #import "IANAppMacros.h"
 #import "IANLocalNotiManager.h"
+#import "IANAssistiveTouch.h"
+#import "PaintedEggshellController.h"
+#import "IANCustomDataProtocol.h"
 
 @implementation PaintedEggshellManager
+{
+    BOOL _isIANOpen;
+}
 
 + (PaintedEggshellManager *)shareInstance
 {
@@ -58,6 +64,40 @@
     NSLog(@"%@",filePath);
     [NSKeyedArchiver archiveRootObject:self.networkLogArray toFile:filePath];
     [self.networkLogArray removeAllObjects];
+}
+
+- (void)configInitData
+{
+    [NSURLProtocol registerClass:[IANCustomDataProtocol class]];
+    [self addPaintedEggshellLocalNotification];
+    
+    NSString *paintedEggshellIndex = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_INDEX];
+    NSString *paintedEggshellLogIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_LOG_ISOPEN];
+    PaintedEggshellController *controller = [[PaintedEggshellController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    controller.selectedIndex = paintedEggshellIndex.integerValue;
+    controller.isOpenLog = paintedEggshellLogIsOpen.integerValue;
+    
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), queue, ^{
+        IANAssistiveTouch *win = [[IANAssistiveTouch alloc] initWithFrame:CGRectMake(0, 80, 40, 40)];
+        win.IANAssistiveTouchBlockAction = ^{
+
+            if (!_isIANOpen) {
+                _isIANOpen = YES;
+                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navController animated:YES completion:^{
+                    //            ((AppDelegate *)[UIApplication sharedApplication].delegate).isPaintedEggshellControllerpresent = YES;
+                }];
+            } else {
+                _isIANOpen = NO;
+                [navController dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
+            }
+            
+        };
+    });
+
 }
 
 @end

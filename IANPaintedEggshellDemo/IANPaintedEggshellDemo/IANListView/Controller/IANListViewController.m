@@ -15,8 +15,6 @@
 
 #import "UIView+ManyTapAction.h"
 #import "IANAppMacros.h"
-#import "PaintedEggshellController.h"
-#import "PaintedEggshellManager.h"
 
 @interface IANListViewController ()
 
@@ -31,8 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addEggClick];
-    [[PaintedEggshellManager shareInstance] addPaintedEggshellLocalNotification];
     self.title = @"IANListView";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     _listView = [[IANListView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-64)];
@@ -103,28 +99,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)addEggClick
-{
-    [self.navigationController.navigationBar addManyTapAction:3 action:^{
-//        if (((AppDelegate *)[UIApplication sharedApplication].delegate).isPaintedEggshellControllerpresent) {
-//            return;
-//        }
-        
-        NSString *paintedEggshellIndex = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_INDEX];
-        NSString *paintedEggshellShakeIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_SHAKE_ISOPEN];
-        NSString *paintedEggshellLogIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_LOG_ISOPEN];
-        PaintedEggshellController *controller = [[PaintedEggshellController alloc] init];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-        controller.selectedIndex = paintedEggshellIndex.integerValue;
-        controller.isOpenShake = paintedEggshellShakeIsOpen.integerValue;
-        controller.isOpenLog = paintedEggshellLogIsOpen.integerValue;
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navController animated:YES completion:^{
-//            ((AppDelegate *)[UIApplication sharedApplication].delegate).isPaintedEggshellControllerpresent = YES;
-        }];
- 
-    }];
 }
 
 - (CGSize)textSize:(NSString *)text font:(UIFont *)font bounding:(CGSize)size

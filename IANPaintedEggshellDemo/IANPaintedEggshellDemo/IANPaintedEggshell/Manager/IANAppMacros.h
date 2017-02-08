@@ -11,7 +11,6 @@
 
 // 测试正式环境切换
 #define PAINTED_EGGSHELL_INDEX                         @"painted_eggshell_index"
-#define PAINTED_EGGSHELL_SHAKE_ISOPEN                  @"painted_eggshell_shake_isopen"
 #define PAINTED_EGGSHELL_LOG_ISOPEN                    @"painted_eggshell_log_isopen"
 #define PAINTED_EGGSHELL_LOCALNOTI                     @"painted_eggshell_localnoti"
 

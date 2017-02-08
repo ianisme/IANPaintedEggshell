@@ -25,6 +25,7 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
 
 @implementation PaintedEggshellController
 
+
 #pragma mark - life style
 
 - (void)viewDidLoad
@@ -72,12 +73,6 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     } else if(indexPath.section == 1){
-        if (_isOpenShake) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    } else if(indexPath.section == 2){
         if (_isOpenLog) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
@@ -102,14 +97,6 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
         
         _selectedIndex = indexPath.row;
     } else if(indexPath.section == 1){
-        _isOpenShake = !_isOpenShake;
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if (_isOpenShake) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    } else if(indexPath.section == 2){
         _isOpenLog = !_isOpenLog;
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if (_isOpenLog) {
@@ -127,7 +114,7 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section == 2 ? 40 : 15;
+    return section == 1 ? 40 : 15;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -136,7 +123,7 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 2) {
+    if (section == 1) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2.5, self.view.frame.size.width - 10 , 35)];
         label.numberOfLines = 2;
@@ -163,9 +150,6 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
                            @{@"name":@"正式环境"},
                            @{@"name":@"准生产环境"},
                            @{@"name":@"测试环境"}
-                           ],
-                       @[
-                           @{@"name":@"开启摇一摇"}
                            ],
                        @[
                            @{@"name":@"开启收集日志功能"}
@@ -261,9 +245,6 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%zd",_selectedIndex] forKey:PAINTED_EGGSHELL_INDEX];
-    
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%zd",_isOpenShake] forKey:PAINTED_EGGSHELL_SHAKE_ISOPEN];
     
     
     if (_isOpenLog) {
