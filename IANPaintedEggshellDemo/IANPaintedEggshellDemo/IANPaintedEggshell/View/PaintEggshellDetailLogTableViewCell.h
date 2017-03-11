@@ -15,6 +15,4 @@
 
 + (CGFloat)heightWithModel:(IANNetworkLogModel *)model;
 
-+ (NSString *)revertTime:(NSString *)time;
-
 @end

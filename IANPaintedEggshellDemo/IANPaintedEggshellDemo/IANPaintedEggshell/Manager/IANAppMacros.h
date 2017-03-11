@@ -12,10 +12,7 @@
 // 测试正式环境切换
 #define PAINTED_EGGSHELL_INDEX                         @"painted_eggshell_index"
 #define PAINTED_EGGSHELL_LOG_ISOPEN                    @"painted_eggshell_log_isopen"
-#define PAINTED_EGGSHELL_LOCALNOTI                     @"painted_eggshell_localnoti"
-
-// 彩蛋日志搜集时间间隔
-#define PAINTED_EGGSHELL_LOG_TIME                      10
+#define PAINTED_EGGSHELL_CRASH_LOG_ISOPEN              @"painted_eggshell_crash_log_isopen"
 
 // 是否集成彩蛋功能 （1为集成，0为不集成）APPStore版本禁止集成，设置为0
 #define PAINTED_EGGSHELL_CODE_IS_OPEN                  1

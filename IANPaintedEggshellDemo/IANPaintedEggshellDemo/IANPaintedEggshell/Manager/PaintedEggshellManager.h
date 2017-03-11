@@ -7,18 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AppDelegate+PaintedEggshell.h"
 #import "IANAppMacros.h"
 
 @interface PaintedEggshellManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *networkLogArray;
 
+@property (nonatomic, assign) NSUInteger tempTimeStamp;
+
+@property (nonatomic, assign) BOOL isDisplayPaintedEggVC;
+
 + (PaintedEggshellManager *)shareInstance;
 
 - (void)configInitData;
 
-- (void)addPaintedEggshellLocalNotification;
+- (void)savePaintedEggshellNetworkLogPlist;
+
 
 
 @end

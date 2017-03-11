@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3C0A9F381DEC6AD20045B5F7 /* IANNetworkLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F371DEC6AD20045B5F7 /* IANNetworkLogModel.m */; };
 		3C0A9F3B1DEC6B350045B5F7 /* PaintEggshellDetailLogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F3A1DEC6B350045B5F7 /* PaintEggshellDetailLogTableViewCell.m */; };
-		3C0A9F3E1DEC6B950045B5F7 /* PaintedEggshellLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F3D1DEC6B950045B5F7 /* PaintedEggshellLabel.m */; };
 		3C0A9F421DED17440045B5F7 /* PaintedEggshellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F411DED17440045B5F7 /* PaintedEggshellManager.m */; };
 		3C0A9F531DED6A950045B5F7 /* IANPageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F4E1DED6A950045B5F7 /* IANPageDataSource.m */; };
 		3C0A9F541DED6A950045B5F7 /* IANListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F521DED6A950045B5F7 /* IANListView.m */; };
@@ -17,17 +16,25 @@
 		3C0A9F5A1DED6B7B0045B5F7 /* CustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F591DED6B7B0045B5F7 /* CustomModel.m */; };
 		3C0A9F5D1DED6BAD0045B5F7 /* IANListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F5C1DED6BAD0045B5F7 /* IANListViewController.m */; };
 		3C0A9F601DED6E0D0045B5F7 /* IANCustomDataProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F5F1DED6E0D0045B5F7 /* IANCustomDataProtocol.m */; };
-		3C0A9F661DEDB7F90045B5F7 /* AppDelegate+PaintedEggshell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A9F651DEDB7F90045B5F7 /* AppDelegate+PaintedEggshell.m */; };
 		3C2DB0501DEC24D50071253A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB04F1DEC24D50071253A /* main.m */; };
 		3C2DB0531DEC24D50071253A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB0521DEC24D50071253A /* AppDelegate.m */; };
 		3C2DB05B1DEC24D50071253A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C2DB05A1DEC24D50071253A /* Assets.xcassets */; };
 		3C2DB05E1DEC24D50071253A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C2DB05C1DEC24D50071253A /* LaunchScreen.storyboard */; };
-		3C2DB06D1DEC2B570071253A /* UIView+ManyTapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB06C1DEC2B570071253A /* UIView+ManyTapAction.m */; };
 		3C2DB0701DEC2C0F0071253A /* PaintedEggshellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB06F1DEC2C0F0071253A /* PaintedEggshellController.m */; };
 		3C2DB0751DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB0721DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m */; };
 		3C2DB0761DEC2CDF0071253A /* PaintEggshellLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB0741DEC2CDF0071253A /* PaintEggshellLogController.m */; };
-		3C2DB0791DEC2D1B0071253A /* IANLocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2DB0781DEC2D1B0071253A /* IANLocalNotiManager.m */; };
+		3C4268311E6FD75300B182BD /* PaintEggshellLogRequestListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4268301E6FD75300B182BD /* PaintEggshellLogRequestListViewController.m */; };
+		3C4268341E6FD89700B182BD /* PaintEggshellLogRequestListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4268331E6FD89700B182BD /* PaintEggshellLogRequestListTableViewCell.m */; };
+		3C4268361E70F25400B182BD /* paintegg_nav_rightbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4268351E70F25400B182BD /* paintegg_nav_rightbtn@2x.png */; };
+		3C4268391E70F50E00B182BD /* PaintedEggNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4268381E70F50E00B182BD /* PaintedEggNetworkService.m */; };
+		3C4268431E70FFDA00B182BD /* UIButton+IANActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4268421E70FFDA00B182BD /* UIButton+IANActivityView.m */; };
+		3C4268AA1E72808700B182BD /* PaintedEggUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4268A91E72808700B182BD /* PaintedEggUncaughtExceptionHandler.m */; };
+		3C4268B31E7296C500B182BD /* PaintedEggshellCrashDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4268B21E7296C500B182BD /* PaintedEggshellCrashDetailViewController.m */; };
+		3C4268B61E7298CC00B182BD /* PaintEggshellCrashDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4268B51E7298CC00B182BD /* PaintEggshellCrashDetailTableViewCell.m */; };
 		3C6172791E4B52EC005D65CC /* ianEggLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C6172781E4B52EC005D65CC /* ianEggLogo@2x.png */; };
+		3CA374B51E5C249800F9B9F4 /* PaintEggshellLogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA374B41E5C249800F9B9F4 /* PaintEggshellLogTableViewCell.m */; };
+		3CA374B81E5C263300F9B9F4 /* IANNetworkLogPlistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA374B71E5C263300F9B9F4 /* IANNetworkLogPlistModel.m */; };
+		3CA374BE1E5C2F5300F9B9F4 /* IANUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA374BD1E5C2F5300F9B9F4 /* IANUtil.m */; };
 		3CD0BD101E31ADCE0035E272 /* NSURLSessionConfiguration+IANHttpSessionHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0BD0F1E31ADCE0035E272 /* NSURLSessionConfiguration+IANHttpSessionHook.m */; };
 		3CD0BD131E31AFFD0035E272 /* IANAssistiveTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0BD121E31AFFD0035E272 /* IANAssistiveTouch.m */; };
 		3CFF98921DEEC85800AA80A3 /* IANAFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFF98911DEEC85800AA80A3 /* IANAFHTTPSessionManager.m */; };
@@ -39,8 +46,6 @@
 		3C0A9F371DEC6AD20045B5F7 /* IANNetworkLogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANNetworkLogModel.m; sourceTree = "<group>"; };
 		3C0A9F391DEC6B350045B5F7 /* PaintEggshellDetailLogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEggshellDetailLogTableViewCell.h; sourceTree = "<group>"; };
 		3C0A9F3A1DEC6B350045B5F7 /* PaintEggshellDetailLogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellDetailLogTableViewCell.m; sourceTree = "<group>"; };
-		3C0A9F3C1DEC6B950045B5F7 /* PaintedEggshellLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintedEggshellLabel.h; sourceTree = "<group>"; };
-		3C0A9F3D1DEC6B950045B5F7 /* PaintedEggshellLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintedEggshellLabel.m; sourceTree = "<group>"; };
 		3C0A9F3F1DEC75BB0045B5F7 /* IANAppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANAppMacros.h; sourceTree = "<group>"; };
 		3C0A9F401DED17440045B5F7 /* PaintedEggshellManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintedEggshellManager.h; sourceTree = "<group>"; };
 		3C0A9F411DED17440045B5F7 /* PaintedEggshellManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintedEggshellManager.m; sourceTree = "<group>"; };
@@ -56,8 +61,6 @@
 		3C0A9F5C1DED6BAD0045B5F7 /* IANListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANListViewController.m; sourceTree = "<group>"; };
 		3C0A9F5E1DED6E0D0045B5F7 /* IANCustomDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANCustomDataProtocol.h; sourceTree = "<group>"; };
 		3C0A9F5F1DED6E0D0045B5F7 /* IANCustomDataProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANCustomDataProtocol.m; sourceTree = "<group>"; };
-		3C0A9F641DEDB7F90045B5F7 /* AppDelegate+PaintedEggshell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+PaintedEggshell.h"; sourceTree = "<group>"; };
-		3C0A9F651DEDB7F90045B5F7 /* AppDelegate+PaintedEggshell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+PaintedEggshell.m"; sourceTree = "<group>"; };
 		3C2DB04B1DEC24D50071253A /* IANPaintedEggshellDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IANPaintedEggshellDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C2DB04F1DEC24D50071253A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C2DB0511DEC24D50071253A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,17 +68,34 @@
 		3C2DB05A1DEC24D50071253A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C2DB05D1DEC24D50071253A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C2DB05F1DEC24D50071253A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C2DB06B1DEC2B570071253A /* UIView+ManyTapAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ManyTapAction.h"; sourceTree = "<group>"; };
-		3C2DB06C1DEC2B570071253A /* UIView+ManyTapAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ManyTapAction.m"; sourceTree = "<group>"; };
 		3C2DB06E1DEC2C0F0071253A /* PaintedEggshellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintedEggshellController.h; sourceTree = "<group>"; };
 		3C2DB06F1DEC2C0F0071253A /* PaintedEggshellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintedEggshellController.m; sourceTree = "<group>"; };
 		3C2DB0711DEC2CDF0071253A /* PaintEggshellDetailLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEggshellDetailLogViewController.h; sourceTree = "<group>"; };
 		3C2DB0721DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellDetailLogViewController.m; sourceTree = "<group>"; };
 		3C2DB0731DEC2CDF0071253A /* PaintEggshellLogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEggshellLogController.h; sourceTree = "<group>"; };
 		3C2DB0741DEC2CDF0071253A /* PaintEggshellLogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellLogController.m; sourceTree = "<group>"; };
-		3C2DB0771DEC2D1B0071253A /* IANLocalNotiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANLocalNotiManager.h; sourceTree = "<group>"; };
-		3C2DB0781DEC2D1B0071253A /* IANLocalNotiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANLocalNotiManager.m; sourceTree = "<group>"; };
+		3C42682F1E6FD75300B182BD /* PaintEggshellLogRequestListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEggshellLogRequestListViewController.h; sourceTree = "<group>"; };
+		3C4268301E6FD75300B182BD /* PaintEggshellLogRequestListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellLogRequestListViewController.m; sourceTree = "<group>"; };
+		3C4268321E6FD89700B182BD /* PaintEggshellLogRequestListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEggshellLogRequestListTableViewCell.h; sourceTree = "<group>"; };
+		3C4268331E6FD89700B182BD /* PaintEggshellLogRequestListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellLogRequestListTableViewCell.m; sourceTree = "<group>"; };
+		3C4268351E70F25400B182BD /* paintegg_nav_rightbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paintegg_nav_rightbtn@2x.png"; sourceTree = "<group>"; };
+		3C4268371E70F50E00B182BD /* PaintedEggNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintedEggNetworkService.h; sourceTree = "<group>"; };
+		3C4268381E70F50E00B182BD /* PaintedEggNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintedEggNetworkService.m; sourceTree = "<group>"; };
+		3C4268411E70FFDA00B182BD /* UIButton+IANActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+IANActivityView.h"; sourceTree = "<group>"; };
+		3C4268421E70FFDA00B182BD /* UIButton+IANActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+IANActivityView.m"; sourceTree = "<group>"; };
+		3C4268A81E72808700B182BD /* PaintedEggUncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintedEggUncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		3C4268A91E72808700B182BD /* PaintedEggUncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintedEggUncaughtExceptionHandler.m; sourceTree = "<group>"; };
+		3C4268B11E7296C500B182BD /* PaintedEggshellCrashDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintedEggshellCrashDetailViewController.h; sourceTree = "<group>"; };
+		3C4268B21E7296C500B182BD /* PaintedEggshellCrashDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintedEggshellCrashDetailViewController.m; sourceTree = "<group>"; };
+		3C4268B41E7298CC00B182BD /* PaintEggshellCrashDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEggshellCrashDetailTableViewCell.h; sourceTree = "<group>"; };
+		3C4268B51E7298CC00B182BD /* PaintEggshellCrashDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellCrashDetailTableViewCell.m; sourceTree = "<group>"; };
 		3C6172781E4B52EC005D65CC /* ianEggLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ianEggLogo@2x.png"; sourceTree = "<group>"; };
+		3CA374B31E5C249800F9B9F4 /* PaintEggshellLogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEggshellLogTableViewCell.h; sourceTree = "<group>"; };
+		3CA374B41E5C249800F9B9F4 /* PaintEggshellLogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEggshellLogTableViewCell.m; sourceTree = "<group>"; };
+		3CA374B61E5C263300F9B9F4 /* IANNetworkLogPlistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANNetworkLogPlistModel.h; sourceTree = "<group>"; };
+		3CA374B71E5C263300F9B9F4 /* IANNetworkLogPlistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANNetworkLogPlistModel.m; sourceTree = "<group>"; };
+		3CA374BC1E5C2F5300F9B9F4 /* IANUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANUtil.h; sourceTree = "<group>"; };
+		3CA374BD1E5C2F5300F9B9F4 /* IANUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANUtil.m; sourceTree = "<group>"; };
 		3CD0BD0E1E31ADCE0035E272 /* NSURLSessionConfiguration+IANHttpSessionHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+IANHttpSessionHook.h"; sourceTree = "<group>"; };
 		3CD0BD0F1E31ADCE0035E272 /* NSURLSessionConfiguration+IANHttpSessionHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+IANHttpSessionHook.m"; sourceTree = "<group>"; };
 		3CD0BD111E31AFFD0035E272 /* IANAssistiveTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANAssistiveTouch.h; sourceTree = "<group>"; };
@@ -202,8 +222,8 @@
 		3C2DB0651DEC2B160071253A /* IANPaintedEggshell */ = {
 			isa = PBXGroup;
 			children = (
+				3CA374B91E5C2E9A00F9B9F4 /* Util */,
 				3C6172771E4B52EC005D65CC /* Source */,
-				3C2DB0661DEC2B160071253A /* Category */,
 				3C2DB0671DEC2B160071253A /* Controller */,
 				3C2DB0681DEC2B160071253A /* Manager */,
 				3C2DB0691DEC2B160071253A /* Model */,
@@ -212,26 +232,19 @@
 			path = IANPaintedEggshell;
 			sourceTree = "<group>";
 		};
-		3C2DB0661DEC2B160071253A /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				3C2DB06B1DEC2B570071253A /* UIView+ManyTapAction.h */,
-				3C2DB06C1DEC2B570071253A /* UIView+ManyTapAction.m */,
-				3C0A9F641DEDB7F90045B5F7 /* AppDelegate+PaintedEggshell.h */,
-				3C0A9F651DEDB7F90045B5F7 /* AppDelegate+PaintedEggshell.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
 		3C2DB0671DEC2B160071253A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				3C2DB06E1DEC2C0F0071253A /* PaintedEggshellController.h */,
 				3C2DB06F1DEC2C0F0071253A /* PaintedEggshellController.m */,
-				3C2DB0711DEC2CDF0071253A /* PaintEggshellDetailLogViewController.h */,
-				3C2DB0721DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m */,
 				3C2DB0731DEC2CDF0071253A /* PaintEggshellLogController.h */,
 				3C2DB0741DEC2CDF0071253A /* PaintEggshellLogController.m */,
+				3C42682F1E6FD75300B182BD /* PaintEggshellLogRequestListViewController.h */,
+				3C4268301E6FD75300B182BD /* PaintEggshellLogRequestListViewController.m */,
+				3C2DB0711DEC2CDF0071253A /* PaintEggshellDetailLogViewController.h */,
+				3C2DB0721DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m */,
+				3C4268B11E7296C500B182BD /* PaintedEggshellCrashDetailViewController.h */,
+				3C4268B21E7296C500B182BD /* PaintedEggshellCrashDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -242,12 +255,14 @@
 				3C0A9F401DED17440045B5F7 /* PaintedEggshellManager.h */,
 				3C0A9F411DED17440045B5F7 /* PaintedEggshellManager.m */,
 				3C0A9F3F1DEC75BB0045B5F7 /* IANAppMacros.h */,
-				3C2DB0771DEC2D1B0071253A /* IANLocalNotiManager.h */,
-				3C2DB0781DEC2D1B0071253A /* IANLocalNotiManager.m */,
 				3C0A9F5E1DED6E0D0045B5F7 /* IANCustomDataProtocol.h */,
 				3C0A9F5F1DED6E0D0045B5F7 /* IANCustomDataProtocol.m */,
 				3CD0BD0E1E31ADCE0035E272 /* NSURLSessionConfiguration+IANHttpSessionHook.h */,
 				3CD0BD0F1E31ADCE0035E272 /* NSURLSessionConfiguration+IANHttpSessionHook.m */,
+				3C4268371E70F50E00B182BD /* PaintedEggNetworkService.h */,
+				3C4268381E70F50E00B182BD /* PaintedEggNetworkService.m */,
+				3C4268A81E72808700B182BD /* PaintedEggUncaughtExceptionHandler.h */,
+				3C4268A91E72808700B182BD /* PaintedEggUncaughtExceptionHandler.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -255,6 +270,8 @@
 		3C2DB0691DEC2B160071253A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3CA374B61E5C263300F9B9F4 /* IANNetworkLogPlistModel.h */,
+				3CA374B71E5C263300F9B9F4 /* IANNetworkLogPlistModel.m */,
 				3C0A9F361DEC6AD20045B5F7 /* IANNetworkLogModel.h */,
 				3C0A9F371DEC6AD20045B5F7 /* IANNetworkLogModel.m */,
 			);
@@ -266,10 +283,14 @@
 			children = (
 				3CD0BD111E31AFFD0035E272 /* IANAssistiveTouch.h */,
 				3CD0BD121E31AFFD0035E272 /* IANAssistiveTouch.m */,
+				3CA374B31E5C249800F9B9F4 /* PaintEggshellLogTableViewCell.h */,
+				3CA374B41E5C249800F9B9F4 /* PaintEggshellLogTableViewCell.m */,
+				3C4268321E6FD89700B182BD /* PaintEggshellLogRequestListTableViewCell.h */,
+				3C4268331E6FD89700B182BD /* PaintEggshellLogRequestListTableViewCell.m */,
 				3C0A9F391DEC6B350045B5F7 /* PaintEggshellDetailLogTableViewCell.h */,
 				3C0A9F3A1DEC6B350045B5F7 /* PaintEggshellDetailLogTableViewCell.m */,
-				3C0A9F3C1DEC6B950045B5F7 /* PaintedEggshellLabel.h */,
-				3C0A9F3D1DEC6B950045B5F7 /* PaintedEggshellLabel.m */,
+				3C4268B41E7298CC00B182BD /* PaintEggshellCrashDetailTableViewCell.h */,
+				3C4268B51E7298CC00B182BD /* PaintEggshellCrashDetailTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -277,9 +298,37 @@
 		3C6172771E4B52EC005D65CC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3C4268351E70F25400B182BD /* paintegg_nav_rightbtn@2x.png */,
 				3C6172781E4B52EC005D65CC /* ianEggLogo@2x.png */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		3CA374B91E5C2E9A00F9B9F4 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3CA374BB1E5C2F0D00F9B9F4 /* Common */,
+				3CA374BA1E5C2E9A00F9B9F4 /* Category */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		3CA374BA1E5C2E9A00F9B9F4 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				3C4268411E70FFDA00B182BD /* UIButton+IANActivityView.h */,
+				3C4268421E70FFDA00B182BD /* UIButton+IANActivityView.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		3CA374BB1E5C2F0D00F9B9F4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3CA374BC1E5C2F5300F9B9F4 /* IANUtil.h */,
+				3CA374BD1E5C2F5300F9B9F4 /* IANUtil.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		D8C9452C204A4A5D7672F271 /* Pods */ = {
@@ -328,7 +377,7 @@
 		3C2DB0431DEC24D50071253A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = ian;
 				TargetAttributes = {
 					3C2DB04A1DEC24D50071253A = {
@@ -362,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C2DB05E1DEC24D50071253A /* LaunchScreen.storyboard in Resources */,
+				3C4268361E70F25400B182BD /* paintegg_nav_rightbtn@2x.png in Resources */,
 				3C6172791E4B52EC005D65CC /* ianEggLogo@2x.png in Resources */,
 				3C2DB05B1DEC24D50071253A /* Assets.xcassets in Resources */,
 			);
@@ -422,27 +472,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C2DB0791DEC2D1B0071253A /* IANLocalNotiManager.m in Sources */,
 				3C0A9F3B1DEC6B350045B5F7 /* PaintEggshellDetailLogTableViewCell.m in Sources */,
+				3C4268311E6FD75300B182BD /* PaintEggshellLogRequestListViewController.m in Sources */,
+				3CA374B81E5C263300F9B9F4 /* IANNetworkLogPlistModel.m in Sources */,
 				3C0A9F421DED17440045B5F7 /* PaintedEggshellManager.m in Sources */,
 				3C0A9F571DED6B700045B5F7 /* IANCustomCell.m in Sources */,
-				3C2DB06D1DEC2B570071253A /* UIView+ManyTapAction.m in Sources */,
-				3C0A9F661DEDB7F90045B5F7 /* AppDelegate+PaintedEggshell.m in Sources */,
 				3C0A9F5D1DED6BAD0045B5F7 /* IANListViewController.m in Sources */,
 				3CD0BD131E31AFFD0035E272 /* IANAssistiveTouch.m in Sources */,
 				3C0A9F5A1DED6B7B0045B5F7 /* CustomModel.m in Sources */,
 				3C2DB0761DEC2CDF0071253A /* PaintEggshellLogController.m in Sources */,
 				3CD0BD101E31ADCE0035E272 /* NSURLSessionConfiguration+IANHttpSessionHook.m in Sources */,
 				3C0A9F541DED6A950045B5F7 /* IANListView.m in Sources */,
+				3C4268B61E7298CC00B182BD /* PaintEggshellCrashDetailTableViewCell.m in Sources */,
+				3C4268391E70F50E00B182BD /* PaintedEggNetworkService.m in Sources */,
+				3CA374BE1E5C2F5300F9B9F4 /* IANUtil.m in Sources */,
 				3C2DB0751DEC2CDF0071253A /* PaintEggshellDetailLogViewController.m in Sources */,
 				3C0A9F531DED6A950045B5F7 /* IANPageDataSource.m in Sources */,
 				3C0A9F381DEC6AD20045B5F7 /* IANNetworkLogModel.m in Sources */,
 				3C2DB0701DEC2C0F0071253A /* PaintedEggshellController.m in Sources */,
 				3CFF98921DEEC85800AA80A3 /* IANAFHTTPSessionManager.m in Sources */,
+				3C4268B31E7296C500B182BD /* PaintedEggshellCrashDetailViewController.m in Sources */,
+				3C4268431E70FFDA00B182BD /* UIButton+IANActivityView.m in Sources */,
+				3C4268AA1E72808700B182BD /* PaintedEggUncaughtExceptionHandler.m in Sources */,
+				3C4268341E6FD89700B182BD /* PaintEggshellLogRequestListTableViewCell.m in Sources */,
+				3CA374B51E5C249800F9B9F4 /* PaintEggshellLogTableViewCell.m in Sources */,
 				3C2DB0531DEC24D50071253A /* AppDelegate.m in Sources */,
 				3C2DB0501DEC24D50071253A /* main.m in Sources */,
 				3C0A9F601DED6E0D0045B5F7 /* IANCustomDataProtocol.m in Sources */,
-				3C0A9F3E1DEC6B950045B5F7 /* PaintedEggshellLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +534,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -525,6 +582,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

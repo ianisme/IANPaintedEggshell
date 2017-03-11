@@ -10,6 +10,7 @@
 #import "IANAppMacros.h"
 #import "IANNetworkLogModel.h"
 #import "PaintedEggshellManager.h"
+#import "IANUtil.h"
 
 static NSString * const hasInitKey = @"IANCustomDataProtocolKey";
 
@@ -105,39 +106,42 @@ static NSString * const hasInitKey = @"IANCustomDataProtocolKey";
         if ([dictionary[@"Content-Type"] containsString:@"text"]) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:self.ianResponseData options:NSJSONReadingAllowFragments error:nil];
             
+            NSLog(@"%@",self.request.URL.absoluteString);
+            NSLog(@"%@",self.request.HTTPMethod);
+            NSLog(@"%@",[[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
             // Unicode转码
             NSString *responseUnicode = dic.description;
             NSString *eggResponse = nil;
             if (responseUnicode) {
-                eggResponse = [self replaceUnicode:responseUnicode];
+                eggResponse = [IANUtil replaceUnicode:responseUnicode];
             }
             NSLog(@"%@", eggResponse);
             
             NSString *paintedEggshellLogIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_LOG_ISOPEN];
             if ([paintedEggshellLogIsOpen isEqualToString:@"1"]) {
                 IANNetworkLogModel *networkLogModel = [[IANNetworkLogModel alloc] init];
-                networkLogModel.contentString = [NSString stringWithFormat:@"%@",eggResponse];
-//                networkLogModel.classString = [NSString stringWithFormat:@"%@",NSStringFromClass([request class])];
+                
+                networkLogModel.urlString = self.request.URL.absoluteString;
+                networkLogModel.httpMethodString = self.request.HTTPMethod;
+                networkLogModel.httpBodyString = [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding];
+                networkLogModel.responseString = [NSString stringWithFormat:@"%@",eggResponse];
+                networkLogModel.classString = [NSString stringWithFormat:@"%@",NSStringFromClass([self.request class])];
                 networkLogModel.timeString = [NSString stringWithFormat:@"%zd", (long)[[NSDate date] timeIntervalSince1970]];
                 [[PaintedEggshellManager shareInstance].networkLogArray addObject:networkLogModel];
+                
+                NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+                NSInteger intervalInt = round(interval);
+                NSUInteger tempTimeStamp = [PaintedEggshellManager shareInstance].tempTimeStamp;
+                
+                if (intervalInt - tempTimeStamp > 5) {
+                    [PaintedEggshellManager shareInstance].tempTimeStamp = interval;
+                    [[PaintedEggshellManager shareInstance] savePaintedEggshellNetworkLogPlist];
+                }
+                
             }
             
         }
     }
-}
-
-- (NSString *)replaceUnicode:(NSString *)unicodeStr
-{
-    
-    NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
-    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
-    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
-    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-    NSString* returnStr = [NSPropertyListSerialization propertyListFromData:tempData
-                                                           mutabilityOption:NSPropertyListImmutable
-                                                                     format:NULL
-                                                           errorDescription:NULL];
-    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
 }
 
 @end

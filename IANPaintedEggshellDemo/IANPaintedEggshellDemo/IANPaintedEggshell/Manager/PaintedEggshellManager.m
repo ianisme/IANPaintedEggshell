@@ -8,15 +8,11 @@
 
 #import "PaintedEggshellManager.h"
 #import "IANAppMacros.h"
-#import "IANLocalNotiManager.h"
 #import "IANAssistiveTouch.h"
 #import "PaintedEggshellController.h"
 #import "IANCustomDataProtocol.h"
 
 @implementation PaintedEggshellManager
-{
-    BOOL _isIANOpen;
-}
 
 + (PaintedEggshellManager *)shareInstance
 {
@@ -29,20 +25,6 @@
     return _sharedInstance;
 }
 
-- (void)addPaintedEggshellLocalNotification
-{
-    NSString *paintedEggshellLogIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_LOG_ISOPEN];
-    if ([paintedEggshellLogIsOpen isEqualToString:@"1"]) {
-        
-        [self savePaintedEggshellNetworkLogPlist];
-        
-        [[IANLocalNotiManager shareInstance] cancelLocalNotiManager:PAINTED_EGGSHELL_LOCALNOTI];
-        // 设置保存日志文件的时间为10秒一次
-        [[IANLocalNotiManager shareInstance] setLocalNotiManager:@{} andTaskId:PAINTED_EGGSHELL_LOCALNOTI andLocalTime:PAINTED_EGGSHELL_LOG_TIME];
-    } else {
-        [[IANLocalNotiManager shareInstance] cancelLocalNotiManager:PAINTED_EGGSHELL_LOCALNOTI];
-    }
-}
 
 - (void)savePaintedEggshellNetworkLogPlist
 {
@@ -53,7 +35,7 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/NetworkLog/",codePath[0]];
+    NSString *path = [NSString stringWithFormat:@"%@/PaintedNetworkLog/",codePath[0]];
     
     if(![fileManager fileExistsAtPath:path]){//如果不存在,则说明是第一次运行这个程序，那么建立这个文件夹
         NSLog(@"first run");
@@ -69,35 +51,42 @@
 - (void)configInitData
 {
     [NSURLProtocol registerClass:[IANCustomDataProtocol class]];
-    [self addPaintedEggshellLocalNotification];
     
     NSString *paintedEggshellIndex = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_INDEX];
     NSString *paintedEggshellLogIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_LOG_ISOPEN];
+    NSString *paintedEggshellCrashLogIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_CRASH_LOG_ISOPEN];
     PaintedEggshellController *controller = [[PaintedEggshellController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     controller.selectedIndex = paintedEggshellIndex.integerValue;
-    controller.isOpenLog = paintedEggshellLogIsOpen.integerValue;
+    controller.isOpenNetworkLog = paintedEggshellLogIsOpen.integerValue;
+    controller.isOpenCrashLog = paintedEggshellCrashLogIsOpen.integerValue;
     
     dispatch_queue_t queue = dispatch_get_main_queue();
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), queue, ^{
-        IANAssistiveTouch *win = [[IANAssistiveTouch alloc] initWithFrame:CGRectMake(0, 80, 40, 40)];
+        IANAssistiveTouch *win = [[IANAssistiveTouch alloc] initWithFrame:CGRectMake(0, 80, 44, 44)];
         win.IANAssistiveTouchBlockAction = ^{
 
-            if (!_isIANOpen) {
-                _isIANOpen = YES;
-                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navController animated:YES completion:^{
-                    //            ((AppDelegate *)[UIApplication sharedApplication].delegate).isPaintedEggshellControllerpresent = YES;
-                }];
+            if (!self.isDisplayPaintedEggVC) {
+
+                if ([paintedEggshellLogIsOpen isEqualToString:@"1"]) {
+                    [[PaintedEggshellManager shareInstance] savePaintedEggshellNetworkLogPlist];
+                }
+                
+                NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+                NSInteger intervalInt = round(interval);
+                self.tempTimeStamp = intervalInt;
+                
+                self.isDisplayPaintedEggVC = YES;
+                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navController animated:YES completion:nil];
             } else {
-                _isIANOpen = NO;
-                [navController dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
+                self.isDisplayPaintedEggVC = NO;
+                [navController dismissViewControllerAnimated:YES completion:nil];
             }
             
         };
     });
 
 }
+
 
 @end

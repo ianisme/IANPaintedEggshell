@@ -1,26 +1,27 @@
 //
-//  PaintEggshellDetailLogTableViewCell.m
+//  PaintEggshellLogRequestListTableViewCell.m
 //  IANPaintedEggshellDemo
-//
-//  Created by ian on 16/11/28.
-//  Copyright © 2016年 ian. All rights reserved.
+//  网络日志rquest页面的cell
+//  Created by ian on 2017/3/8.
+//  Copyright © 2017年 ian. All rights reserved.
 //
 
-#import "PaintEggshellDetailLogTableViewCell.h"
+#import "PaintEggshellLogRequestListTableViewCell.h"
 #import "IANUtil.h"
 #import <Masonry.h>
 
 static CGFloat const kLeftPadding = 15.0f;
 static CGFloat const kTopPadding = 7.0f;
 
-@implementation PaintEggshellDetailLogTableViewCell
+@implementation PaintEggshellLogRequestListTableViewCell
 {
     UILabel *_contentLabel;
     UILabel *_classLabel;
     UILabel *_timeLabel;
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self creatView];
@@ -78,14 +79,15 @@ static CGFloat const kTopPadding = 7.0f;
 
 - (void)configCellWithModel:(IANNetworkLogModel *)model
 {
-    _contentLabel.text = model.responseString;
+    NSString *contentStr = [NSString stringWithFormat:@"URL:%@\nMethod:%@\nBody:%@",model.urlString,model.httpMethodString,model.httpBodyString];
+    _contentLabel.text = contentStr;
     _classLabel.text = model.classString;
     _timeLabel.text = [IANUtil revertTime:model.timeString];
 }
 
 + (CGFloat)heightWithModel:(IANNetworkLogModel *)model
 {
-    PaintEggshellDetailLogTableViewCell *cell = [[PaintEggshellDetailLogTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    PaintEggshellLogRequestListTableViewCell *cell = [[PaintEggshellLogRequestListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
     [cell configCellWithModel:model];
     
     [cell layoutIfNeeded];

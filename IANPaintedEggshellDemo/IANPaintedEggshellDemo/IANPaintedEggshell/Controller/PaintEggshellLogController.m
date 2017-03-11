@@ -1,15 +1,21 @@
 //
 //  PaintEggshellLogController.m
 //  ZiroomerProject
-//
+//  日志文件列表页面
 //  Created by ian on 16/3/7.
 //  Copyright © 2016年 Chris. All rights reserved.
 //
 
 #import "PaintEggshellLogController.h"
 #import "PaintEggshellDetailLogViewController.h"
+#import "PaintEggshellLogRequestListViewController.h"
 #import "PaintEggshellDetailLogTableViewCell.h"
 #import <Masonry.h>
+#import "PaintEggshellLogTableViewCell.h"
+#import "IANNetworkLogPlistModel.h"
+#import "IANUtil.h"
+#import "PaintedEggshellCrashDetailViewController.h"
+
 
 static NSString *const kCellReuseIdentifier = @"NetWorkLogCell";
 
@@ -17,16 +23,19 @@ static NSString *const kCellReuseIdentifier = @"NetWorkLogCell";
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, copy) NSString *logPath;
 
 @end
 
 @implementation PaintEggshellLogController
+
 
 #pragma mark - life style
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self configInitData];
     [self creatNavigationBar];
     [self addTableView];
     [self loadData];
@@ -46,23 +55,35 @@ static NSString *const kCellReuseIdentifier = @"NetWorkLogCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier forIndexPath:indexPath];
-    
-    cell.textLabel.text = [PaintEggshellDetailLogTableViewCell revertTime:self.dataArray[indexPath.row]];
+    PaintEggshellLogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+    NSString *filePath = [NSString stringWithFormat:@"%@%@",_logPath,self.dataArray[indexPath.row]];
+    IANNetworkLogPlistModel *model = [[IANNetworkLogPlistModel alloc] init];
+    model.leftLabelTitle = [IANUtil revertTime:self.dataArray[indexPath.row]];
+    model.rightLabelTitle = [IANUtil fileSizeAtPath:filePath];
+    [cell configCellWithModel:model];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/NetworkLog/",codePath[0]];
-    NSString *filePath = [NSString stringWithFormat:@"%@%@",path,self.dataArray[indexPath.row]];
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    NSString *filePath = [NSString stringWithFormat:@"%@%@",_logPath,self.dataArray[indexPath.row]];
     
-    PaintEggshellDetailLogViewController *controller = [[PaintEggshellDetailLogViewController alloc] init];
-    controller.dataArray = array;
-    [self.navigationController pushViewController:controller animated:YES];
+    if (_logType == PaintEggshellLogNetWorkType) {
+        NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        
+        PaintEggshellLogRequestListViewController *controller = [[PaintEggshellLogRequestListViewController alloc] init];
+        controller.dataArray = array;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        NSError *error = nil;
+        NSString *string = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        NSLog(@"%@", string);
+        PaintedEggshellCrashDetailViewController *controller = [[PaintedEggshellCrashDetailViewController alloc] init];
+        controller.dataArray = [@[string] mutableCopy];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -88,6 +109,17 @@ static NSString *const kCellReuseIdentifier = @"NetWorkLogCell";
 
 #pragma mark - private method
 
+- (void)configInitData
+{
+    NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+
+    if (_logType == PaintEggshellLogNetWorkType) {
+        _logPath = [NSString stringWithFormat:@"%@/PaintedNetworkLog/",codePath[0]];
+    } else {
+        _logPath = [NSString stringWithFormat:@"%@/PaintedCrashLog/",codePath[0]];
+    }
+}
+
 - (void)creatNavigationBar
 {
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -106,10 +138,8 @@ static NSString *const kCellReuseIdentifier = @"NetWorkLogCell";
 - (void)loadData
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/NetworkLog/",codePath[0]];
-    
-    self.dataArray = [NSMutableArray arrayWithArray:[fileManager contentsOfDirectoryAtPath:path error:nil]];
+
+    self.dataArray = [NSMutableArray arrayWithArray:[fileManager contentsOfDirectoryAtPath:_logPath error:nil]];
     [_tableView reloadData];
 }
 
@@ -122,7 +152,7 @@ static NSString *const kCellReuseIdentifier = @"NetWorkLogCell";
     }];
     tableView.delegate = self;
     tableView.dataSource = self;
-    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellReuseIdentifier];
+    [tableView registerClass:[PaintEggshellLogTableViewCell class] forCellReuseIdentifier:kCellReuseIdentifier];
     tableView.tableFooterView = [[UIView alloc] init];
     tableView.tableHeaderView = [[UIView alloc] init];
     tableView.separatorColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
@@ -133,18 +163,14 @@ static NSString *const kCellReuseIdentifier = @"NetWorkLogCell";
 - (void)deleteFile:(NSString *)fileName
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/NetworkLog/",codePath[0]];
-    NSString *filePath = [NSString stringWithFormat:@"%@%@",path,fileName];
+    NSString *filePath = [NSString stringWithFormat:@"%@%@",_logPath,fileName];
     [fileManager removeItemAtPath:filePath error:nil];
 }
 
 - (void)deleteAllFile
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/NetworkLog/",codePath[0]];
-    [fileManager removeItemAtPath:path error:nil];
+    [fileManager removeItemAtPath:_logPath error:nil];
 }
 
 - (UIButton *)creatBtn:(NSString *)title action:(SEL)selector

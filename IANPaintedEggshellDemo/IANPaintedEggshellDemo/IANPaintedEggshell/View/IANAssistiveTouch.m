@@ -16,18 +16,24 @@
     
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-//        self.windowLevel = UIWindowLevelAlert + 1;
-//        //这句话很重要
-//        [self makeKeyAndVisible];
+        //        self.windowLevel = UIWindowLevelAlert + 1;
+        //        //这句话很重要
+        //        [self makeKeyAndVisible];
         
         [[UIApplication sharedApplication].keyWindow addSubview:self];
         
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
         _button.backgroundColor = [UIColor clearColor];
-        [_button setBackgroundImage:[UIImage imageNamed:@"ianEggLogo"] forState:UIControlStateNormal];
+        //        [_button setBackgroundImage:[UIImage imageNamed:@"ianEggLogo"] forState:UIControlStateNormal];
+        [_button setBackgroundImage:[UIImage imageNamed:[self getAppIconName]] forState:UIControlStateNormal];
         _button.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         _button.layer.cornerRadius = 5;
         _button.clipsToBounds = YES;
+        //设置边框颜色
+        _button.layer.borderColor = [[UIColor redColor] CGColor];
+        //设置边框宽度
+        _button.layer.borderWidth = 1.0f;
+        
         [_button addTarget:self action:@selector(choose) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_button];
         
@@ -95,6 +101,31 @@
         }
         _button.enabled = YES;
     }
+}
+
+- (NSString *)getAppIconName
+{
+    
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    
+    //获取app中所有icon名字数组
+    NSArray *iconsArr = infoDict[@"CFBundleIcons"][@"CFBundlePrimaryIcon"][@"CFBundleIconFiles"];
+    //取最后一个icon的名字
+    NSString *iconLastName = [iconsArr lastObject];
+    
+    return iconLastName;
+    //打印icon名字
+    //    NSLog(@"iconsArr: %@", iconsArr);
+    //    NSLog(@"iconLastName: %@", iconLastName);
+    /*
+     打印日志：
+     iconsArr: (
+     AppIcon29x29,
+     AppIcon40x40,
+     AppIcon60x60
+     )
+     iconLastName: AppIcon60x60
+     */
 }
 
 @end

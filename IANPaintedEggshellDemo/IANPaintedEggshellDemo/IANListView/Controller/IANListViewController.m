@@ -12,8 +12,6 @@
 #import "IANCustomCell.h"
 #import "CustomModel.h"
 #import "IANAFHTTPSessionManager.h"
-
-#import "UIView+ManyTapAction.h"
 #import "IANAppMacros.h"
 
 @interface IANListViewController ()

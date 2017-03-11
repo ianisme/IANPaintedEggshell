@@ -10,7 +10,13 @@
 
 @interface IANNetworkLogModel : NSObject<NSCoding>
 
-@property (nonatomic, copy) NSString *contentString;
+@property (nonatomic, copy) NSString *urlString;
+
+@property (nonatomic, copy) NSString *httpMethodString;
+
+@property (nonatomic, copy) NSString *httpBodyString;
+
+@property (nonatomic, copy) NSString *responseString;
 
 @property (nonatomic, copy) NSString *classString;
 

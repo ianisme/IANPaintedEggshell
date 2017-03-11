@@ -1,7 +1,7 @@
 //
 //  PaintedEggshellController.m
 //  IANPaintedEggshellDemo
-//
+//  彩蛋主页面
 //  Created by ian on 16/11/28.
 //  Copyright © 2016年 ian. All rights reserved.
 //
@@ -10,7 +10,6 @@
 #import <Masonry/Masonry.h>
 //#import "WebServiceConfigMG.h"
 #import "PaintEggshellLogController.h"
-#import "IANLocalNotiManager.h"
 #import "IANAppMacros.h"
 #import "PaintedEggshellManager.h"
 
@@ -73,13 +72,26 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     } else if(indexPath.section == 1){
-        if (_isOpenLog) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if (indexPath.row == 0) {
+            if (_isOpenNetworkLog) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
         } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+
     } else {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if (indexPath.row == 0) {
+            if (_isOpenCrashLog) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
     
     return cell;
@@ -97,16 +109,33 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
         
         _selectedIndex = indexPath.row;
     } else if(indexPath.section == 1){
-        _isOpenLog = !_isOpenLog;
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if (_isOpenLog) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if (indexPath.row == 0) {
+            _isOpenNetworkLog = !_isOpenNetworkLog;
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            if (_isOpenNetworkLog) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
         } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            PaintEggshellLogController *controller = [[PaintEggshellLogController alloc] init];
+            controller.logType = PaintEggshellLogNetWorkType;
+            [self.navigationController pushViewController:controller animated:YES];
         }
     } else {
-        PaintEggshellLogController *controller = [[PaintEggshellLogController alloc] init];
-        [self.navigationController pushViewController:controller animated:YES];
+        if (indexPath.row == 0) {
+            _isOpenCrashLog = !_isOpenCrashLog;
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            if (_isOpenCrashLog) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else {
+            PaintEggshellLogController *controller = [[PaintEggshellLogController alloc] init];
+             controller.logType = PaintEggshellLogCrashType;
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -114,26 +143,33 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section == 1 ? 40 : 15;
+    return 40.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2.5, self.view.frame.size.width - 10 , 35)];
-        label.numberOfLines = 2;
-        label.text = @"日志收集的功能为每10秒新建一条记录(需要有请求)";
-        label.font = [UIFont systemFontOfSize:12.5f];
-        label.textColor = [UIColor grayColor];
-        [view addSubview:label];
-        return view;
+    NSString *sectionTitle = @"";
+    if (section == 0) {
+        sectionTitle = @"网络环境切换";
+    } else if (section == 1) {
+        sectionTitle = @"网络日志搜集";
+    } else if (section == 2) {
+        sectionTitle = @"崩溃日志搜集";
     }
-    return [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, self.view.frame.size.width - 10 , 35)];
+    label.numberOfLines = 2;
+    label.text = sectionTitle;
+    label.font = [UIFont systemFontOfSize:12.5f];
+    label.textColor = [UIColor grayColor];
+    [view addSubview:label];
+    return view;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -147,15 +183,16 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
 {
     self.dataArray = @[
                        @[
-                           @{@"name":@"正式环境"},
                            @{@"name":@"准生产环境"},
                            @{@"name":@"测试环境"}
                            ],
                        @[
-                           @{@"name":@"开启收集日志功能"}
+                           @{@"name":@"开启搜集网络日志功能"},
+                           @{@"name":@"查看网络日志"}
                            ],
                        @[
-                           @{@"name":@"查看日志"}
+                           @{@"name":@"开启搜集崩溃日志功能"},
+                           @{@"name":@"查看崩溃日志"}
                            ]
                        
                        ];
@@ -179,14 +216,14 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
     self.navigationItem.rightBarButtonItems = @[spaceItem,rightItem];
     
-    UILabel *titleLabel = [self creatLabel:@"接口环境切换"];
+    UILabel *titleLabel = [self creatLabel:@"彩蛋"];
     titleLabel.frame = CGRectMake(0, 0, 88, 44);
     self.navigationItem.titleView = titleLabel;
 }
 
 - (void)addTableView
 {
-    UITableView *tableView = [[UITableView alloc] init];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.view addSubview:tableView];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -230,12 +267,13 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
 - (void)CloseBtnAction:(UIButton *)btn
 {
     [self dismissViewControllerAnimated:YES completion:^{
-//        ((AppDelegate *)[UIApplication sharedApplication].delegate).isPaintedEggshellControllerpresent = NO;
+        [PaintedEggshellManager shareInstance].isDisplayPaintedEggVC = NO;
     }];
 }
 
 - (void)SaveBtnAction:(UIButton *)btn
 {
+    // -----------------网络环境切换-----------------
     if (_selectedIndex == 0) {
     //    [[WebServiceConfigMG sharedInstance] loadWebUrlConfig:ZR_WEB_UAT];
     } else if (_selectedIndex == 1) {
@@ -246,24 +284,31 @@ static NSString *const kCellReuseIdentifier = @"ChangeNetWorkCell";
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%zd",_selectedIndex] forKey:PAINTED_EGGSHELL_INDEX];
     
-    
-    if (_isOpenLog) {
+    // -----------------网络日志搜集-----------------
+    if (_isOpenNetworkLog) {
         NSLog(@"日志收集功能打开");
-        // 设置保存日志文件的时间为10秒一次
-        [[IANLocalNotiManager shareInstance] setLocalNotiManager:@{} andTaskId:PAINTED_EGGSHELL_LOCALNOTI andLocalTime:PAINTED_EGGSHELL_LOG_TIME];
+
         if ([PaintedEggshellManager shareInstance].networkLogArray == nil) {
             [PaintedEggshellManager shareInstance].networkLogArray = [@[] mutableCopy];
         }
     } else {
         NSLog(@"日志收集功能关闭");
-        [[IANLocalNotiManager shareInstance] cancelLocalNotiManager:PAINTED_EGGSHELL_LOCALNOTI];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%zd",_isOpenLog] forKey:PAINTED_EGGSHELL_LOG_ISOPEN];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%zd",_isOpenNetworkLog] forKey:PAINTED_EGGSHELL_LOG_ISOPEN];
+    
+    // -----------------崩溃日志搜集-----------------
+    if (_isOpenCrashLog) {
+        NSLog(@"日志收集功能打开");
+        
+    } else {
+        NSLog(@"日志收集功能关闭");
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%zd",_isOpenCrashLog] forKey:PAINTED_EGGSHELL_CRASH_LOG_ISOPEN];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self dismissViewControllerAnimated:YES completion:^{
-//        ((AppDelegate *)[UIApplication sharedApplication].delegate).isPaintedEggshellControllerpresent = NO;
+        [PaintedEggshellManager shareInstance].isDisplayPaintedEggVC = NO;
     }];
 }
 
