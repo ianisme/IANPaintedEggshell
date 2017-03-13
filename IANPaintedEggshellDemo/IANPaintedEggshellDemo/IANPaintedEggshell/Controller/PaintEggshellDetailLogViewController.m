@@ -50,7 +50,7 @@ static NSString *const kCellReuseIdentifier = @"NetWorkDetailLogCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count + 2;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,6 +92,16 @@ static NSString *const kCellReuseIdentifier = @"NetWorkDetailLogCell";
 
 - (void)addNavigationBarRightButton
 {
+    UIButton *copyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    copyBtn.frame = CGRectMake(0, 0, 44, 30);
+    [copyBtn setTitle:@"复制" forState:UIControlStateNormal];
+    [copyBtn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [copyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    copyBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [copyBtn addTarget:self action:@selector(copyBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *copyItem = [[UIBarButtonItem alloc] initWithCustomView:copyBtn];
+    
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setImage:[UIImage imageNamed:@"paintegg_nav_rightbtn"] forState:UIControlStateNormal];
     btn.frame = CGRectMake(0, 0, 30, 30);
@@ -102,7 +112,7 @@ static NSString *const kCellReuseIdentifier = @"NetWorkDetailLogCell";
     
     spaceItem.width = -12;
     
-    self.navigationItem.rightBarButtonItems = @[spaceItem, rightItem];
+    self.navigationItem.rightBarButtonItems = @[spaceItem, rightItem, copyItem];
     _rightItemBtn = btn;
 }
 
@@ -136,6 +146,14 @@ static NSString *const kCellReuseIdentifier = @"NetWorkDetailLogCell";
             self.tableView.scrollEnabled = YES;
         }];
     }
+}
+
+- (void)copyBtnAction:(id)sender
+{
+    IANNetworkLogModel *model = (IANNetworkLogModel *)self.dataArray[0];
+    NSString *contentStr = [NSString stringWithFormat:@"URL:%@\nMethod:%@\nBody:%@\nResponse:%@",model.urlString,model.httpMethodString,model.httpBodyString,model.responseString];
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = contentStr;
 }
 
 @end

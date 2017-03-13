@@ -7,6 +7,7 @@
 //
 
 #import "PaintedEggUncaughtExceptionHandler.h"
+#import "IANAppMacros.h"
 
 // 崩溃时的回调函数
 void UncaughtExceptionHandler(NSException * exception) {
@@ -15,21 +16,22 @@ void UncaughtExceptionHandler(NSException * exception) {
     NSString * name = [exception name];
     NSString * url = [NSString stringWithFormat:@"========异常错误报告========\nname:%@\nreason:\n%@\ncallStackSymbols:\n%@",name,reason,[arr componentsJoinedByString:@"\n"]];
 
-//    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [NSString stringWithFormat:@"%@/PaintedCrashLog/",codePath[0]];
-    
-    if(![fileManager fileExistsAtPath:path]){//如果不存在,则说明是第一次运行这个程序，那么建立这个文件夹
-        NSLog(@"first run");
-        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *paintedEggshellCrashLogIsOpen = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_CRASH_LOG_ISOPEN];
+    if ([paintedEggshellCrashLogIsOpen isEqualToString:@"1"]) {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSArray *codePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *path = [NSString stringWithFormat:@"%@/PaintedCrashLog/",codePath[0]];
+        
+        if(![fileManager fileExistsAtPath:path]){//如果不存在,则说明是第一次运行这个程序，那么建立这个文件夹
+            NSLog(@"first run");
+            [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        
+        NSString *filePath = [NSString stringWithFormat:@"%@%zd.txt",path,(long)[[NSDate date] timeIntervalSince1970]];
+        NSLog(@"%@",filePath);
+        
+        [url writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     }
-    
-    NSString *filePath = [NSString stringWithFormat:@"%@%zd.txt",path,(long)[[NSDate date] timeIntervalSince1970]];
-    NSLog(@"%@",filePath);
-
-    [url writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    
 }
 
 @implementation PaintedEggUncaughtExceptionHandler

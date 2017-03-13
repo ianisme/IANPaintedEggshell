@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "IANListViewController.h"
 #import "PaintedEggshellManager.h"
-#import "PaintedEggUncaughtExceptionHandler.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [PaintedEggUncaughtExceptionHandler setDefaultHandler];
-    [[PaintedEggshellManager shareInstance] configInitData];
+[[PaintedEggshellManager shareInstance] configInitData];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

@@ -43,6 +43,9 @@ static NSString *const kCellReuseIdentifier = @"RequestListTableViewCell";
 #pragma mark - table delegate && datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -11,6 +11,7 @@
 #import "IANAssistiveTouch.h"
 #import "PaintedEggshellController.h"
 #import "IANCustomDataProtocol.h"
+#import "PaintedEggUncaughtExceptionHandler.h"
 
 @implementation PaintedEggshellManager
 
@@ -50,6 +51,7 @@
 
 - (void)configInitData
 {
+    [PaintedEggUncaughtExceptionHandler setDefaultHandler];
     [NSURLProtocol registerClass:[IANCustomDataProtocol class]];
     
     NSString *paintedEggshellIndex = [[NSUserDefaults standardUserDefaults] stringForKey:PAINTED_EGGSHELL_INDEX];
